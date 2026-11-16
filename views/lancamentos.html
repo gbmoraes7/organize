@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GTVM Finanças — Lançamentos</title>
+  <title>Organize</title>
 
   <!-- Estilos globais -->
   <link rel="stylesheet" href="{{url_for('static', filename='css/global.css')}}" />
@@ -16,19 +16,7 @@
 <body>
 
   <!-- ===== NAVBAR ===== -->
-  <nav class="navbar">
-    <a class="navbar-marca" href="{{ url_for('home.index') }}">
-      <img src="{{ url_for('static', filename='img/logo-nav.png') }}" alt="Página inicial da GTVM Finanças"
-        class="navbar-logo">
-    </a>
-
-    <ul class="navbar-nav">
-      <li><a href="{{ url_for('home.index') }}">Menu Principal</a></li>
-      <li><a href="{{ url_for('lancamentos.listar') }}" class="ativo">Lançamentos</a></li>
-      <li><a href="{{ url_for('relatorios.exibir') }}">Relatórios</a></li>
-      <li><a href="{{ url_for('investimentos.listar') }}">Investimentos</a></li>
-    </ul>
-  </nav>
+  {% include "navbar.html" %}
 
 
   <!-- ===== CONTEÚDO PRINCIPAL ===== -->
@@ -117,7 +105,8 @@
               Valor
             </label>
 
-            <input type="number" step="0.01" name="valor" class="form-campo" id="novo-valor" placeholder="R$ 0,00" />
+            <input type="number" name="valor" id="novo-valor" class="form-campo" step="0.01" placeholder="R$ 0,00"
+              required>
 
           </div>
 

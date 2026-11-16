@@ -528,7 +528,58 @@ tbody tr:last-child td {
   box-shadow: 0 0 0 1px var(--borda);
 }
 
+.navbar-toggle {
+  display: none;
+}
 
+@media (max-width: 700px) {
+  .navbar {
+    height: auto;
+    min-height: 64px;
+    flex-wrap: wrap;
+  }
+
+  /* Os links continuam disponíveis se o JavaScript não carregar. */
+  .navbar-nav {
+    width: 100%;
+    flex-wrap: wrap;
+    padding-bottom: 12px;
+  }
+
+  .navbar--interativa .navbar-toggle {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--branco);
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .navbar--interativa .navbar-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    inset-inline: 0;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 16px;
+    background: var(--cor-base);
+  }
+
+  .navbar--interativa .navbar-nav.aberto {
+    display: flex;
+  }
+
+  .navbar--interativa .navbar-nav a {
+    display: block;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+}
 /* ============================================================
    RESPONSIVIDADE GLOBAL
    ============================================================ */

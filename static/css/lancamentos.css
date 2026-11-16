@@ -48,8 +48,23 @@
    RESPONSIVIDADE DA PÁGINA LANÇAMENTOS
    ============================================================ */
 @media (max-width: 1024px) {
-  /* Em tablets, sidebar vai para cima da tabela */
   .lancamentos-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card-tabela-lancamentos {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .lancamentos-layout {
+    gap: 16px;
+  }
+
+  .card-filtro,
+  .card-novo-lancamento,
+  .card-tabela-lancamentos {
+    padding: 16px;
   }
 }

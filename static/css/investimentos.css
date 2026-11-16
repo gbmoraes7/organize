@@ -122,11 +122,28 @@
    RESPONSIVIDADE DA PÁGINA INVESTIMENTOS
    ============================================================ */
 @media (max-width: 1024px) {
-  .investimentos-layout {
-    grid-template-columns: 1fr;
+  .investimentos-layout,
+  .resumo-metas {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .resumo-metas {
-    grid-template-columns: 1fr;
+  .card-tabela-investimentos {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .investimentos-layout {
+    gap: 16px;
+  }
+
+  .card-novo-investimento,
+  .card-total-investido,
+  .card-tabela-investimentos {
+    padding: 16px;
+  }
+
+  .card-tabela-investimentos .celula-acoes {
+    flex-wrap: wrap;
   }
 }
