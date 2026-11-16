@@ -6,7 +6,7 @@ Aplicação web para registrar receitas e despesas, acompanhar investimentos e c
 
 
 ## 1. Antes de começar
-
+   
 
 Este guia considera que você já tem **Git e VS Code**. Para rodar o sistema completo, tenha **Python 3.12** e **PostgreSQL** instalados. Se faltar algum deles, consulte as instruções de instalação para o seu sistema no [site do Python](https://www.python.org/downloads/) ou no [site do PostgreSQL](https://www.postgresql.org/download/).
 
