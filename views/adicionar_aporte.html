@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Investimento</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/investimentos.css') }}">
+</head>
+
+<body>
+
+    <main class="main">
+        <div class="card-novo-investimento">
+            <h2 class="card-titulo">Adicionar aporte</h2>
+            <p>{{ investimento.descricao }}</p>
+
+            {% if erro %}
+            <p role="alert">{{ erro }}</p>
+            {% endif %}
+
+            <form method="POST" action="{{ url_for('investimentos.adicionar_aporte', id=investimento.id) }}">
+                <div class="form-grupo">
+                    <label class="form-label" for="valor">Valor do aporte (R$)</label>
+                    <input id="valor" name="valor" class="form-campo" type="number" min="0.01" step="0.01" required>
+                </div>
+
+                <div class="form-grupo">
+                    <label class="form-label" for="data-aporte">Data do aporte</label>
+                    <input id="data-aporte" name="data_aporte" class="form-campo" type="date"
+                        value="{{ data_selecionada }}" required>
+                </div>
+
+                <button type="submit" class="botao botao-principal">Salvar aporte</button>
+                <a href="{{ url_for('investimentos.listar') }}">Voltar</a>
+            </form>
+        </div>
+    </main>
+
+</body>
+
+</html>

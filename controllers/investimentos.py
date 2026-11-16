@@ -1,7 +1,8 @@
 from flask import Blueprint, redirect, render_template, request, url_for
-
+from math import isfinite
+from datetime import date
 from calculos import resumir_investimentos
-from models import Investimento, db
+from models import Aporte, Investimento, db
 
 bp = Blueprint("investimentos", __name__)
 
@@ -28,6 +29,14 @@ def adicionar():
     )
 
     db.session.add(novo_investimento)
+
+    if novo_investimento.valor_investido > 0:
+        db.session.flush()  # Obtém o ID da meta sem confirmar a transação.
+        db.session.add(Aporte(
+            investimento_id=novo_investimento.id,
+            valor=novo_investimento.valor_investido,
+        ))
+
     db.session.commit()
 
     return redirect(url_for("investimentos.listar"))
@@ -59,17 +68,57 @@ def editar(id):
     )
 
 
-@bp.route("/atualizar-investimento/<int:id>", methods=["POST"])
-def atualizar(id):
-    investimento = Investimento.query.get_or_404(id)
+@bp.route("/investimentos/<int:id>/aportes/novo", methods=["GET", "POST"])
+def adicionar_aporte(id):
+    consulta = Investimento.query.filter_by(id=id)
 
-    _copiar_formulario(investimento)
+    if request.method == "POST":
+        consulta = consulta.with_for_update()
+
+    investimento = consulta.first_or_404()
+
+    if request.method == "GET":
+        return render_template(
+            "adicionar_aporte.html",
+            investimento=investimento,
+            data_selecionada=date.today().isoformat(),
+        )
+
+    data_digitada = request.form.get("data_aporte", "")
+
+    try:
+        valor = float(request.form.get("valor", ""))
+    except ValueError:
+        valor = 0
+
+    if not isfinite(valor) or valor < 0.01:
+        return render_template(
+            "adicionar_aporte.html",
+            investimento=investimento,
+            data_selecionada=data_digitada,
+            erro="Informe um valor de pelo menos R$ 0,01.",
+        ), 400
+
+    try:
+        data_aporte = date.fromisoformat(data_digitada)
+    except ValueError:
+        return render_template(
+            "adicionar_aporte.html",
+            investimento=investimento,
+            data_selecionada=data_digitada,
+            erro="Informe uma data válida para o aporte.",
+        ), 400
+
+    investimento.valor_investido += valor
+    db.session.add(
+        Aporte(
+            investimento_id=investimento.id,
+            valor=valor,
+            data=data_aporte,
+        )
+    )
     db.session.commit()
 
     return redirect(url_for("investimentos.listar"))
-
-
-def _copiar_formulario(investimento):
-    investimento.descricao = request.form.get("descricao")
-    investimento.meta = float(request.form.get("meta"))
-    investimento.valor_investido = float(request.form.get("valor_investido"))
+    
+    

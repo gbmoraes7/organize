@@ -5,90 +5,60 @@
   <meta charset="UTF-8">
   <title>Editar Investimento</title>
 
-  <link rel="stylesheet"
-        href="{{ url_for('static', filename='css/global.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
 
-  <link rel="stylesheet"
-        href="{{ url_for('static', filename='css/investimentos.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/investimentos.css') }}">
 </head>
 
 <body>
 
-<main class="main">
+  <main class="main">
 
-  <div class="card-novo-investimento">
+    <div class="card-novo-investimento">
 
-    <h2 class="card-titulo">
-      Editar Investimento
-    </h2>
+      <h2 class="card-titulo">
+        Editar Investimento
+      </h2>
 
-    <form method="POST"
-          action="{{ url_for('investimentos.atualizar',
+      <form method="POST" action="{{ url_for('investimentos.atualizar',
                              id=investimento.id) }}">
 
-      <div class="form-grupo">
+        <div class="form-grupo">
 
-        <label class="form-label">
-          Descrição
-        </label>
+          <label class="form-label">
+            Descrição
+          </label>
 
-        <input
-          type="text"
-          name="descricao"
-          class="form-campo"
-          value="{{ investimento.descricao }}"
-          required
-        >
+          <input type="text" name="descricao" class="form-campo" value="{{ investimento.descricao }}" required>
 
-      </div>
+        </div>
 
-      <div class="form-grupo">
+        <div class="form-grupo">
 
-        <label class="form-label">
-          Meta
-        </label>
+          <label class="form-label">
+            Meta
+          </label>
 
-        <input
-          type="number"
-          step="0.01"
-          name="meta"
-          class="form-campo"
-          value="{{ investimento.meta }}"
-          required
-        >
+          <input type="number" step="0.01" name="meta" class="form-campo" value="{{ investimento.meta }}" required>
 
-      </div>
+        </div>
 
-      <div class="form-grupo">
+        <div class="form-grupo">
+          <p>Valor investido: R$ {{ "%.2f"|format(investimento.valor_investido) }}</p>
+        </div>
 
-        <label class="form-label">
-          Valor Investido
-        </label>
+        <button type="submit" class="botao botao-principal">
 
-        <input
-          type="number"
-          step="0.01"
-          name="valor_investido"
-          class="form-campo"
-          value="{{ investimento.valor_investido }}"
-          required
-        >
+          Salvar Alterações
 
-      </div>
+        </button>
 
-      <button
-        type="submit"
-        class="botao botao-principal">
+      </form>
 
-        Salvar Alterações
+    </div>
 
-      </button>
-
-    </form>
-
-  </div>
-
-</main>
+  </main>
 
 </body>
+
 </html>

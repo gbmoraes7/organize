@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GTVM Finanças — Investimentos</title>
+  <title>Organize</title>
 
   <!-- Estilos globais -->
   <link rel="stylesheet" href="{{url_for('static', filename='css/global.css')}}" />
@@ -16,19 +16,7 @@
 <body>
 
   <!-- ===== NAVBAR ===== -->
-  <nav class="navbar">
-    <a class="navbar-marca" href="{{ url_for('home.index') }}">
-      <img src="{{ url_for('static', filename='img/logo-nav.png') }}" alt="Página inicial da GTVM Finanças"
-        class="navbar-logo">
-    </a>
-
-    <ul class="navbar-nav">
-      <li><a href="{{ url_for('home.index') }}">Menu Principal</a></li>
-      <li><a href="{{ url_for('lancamentos.listar') }}">Lançamentos</a></li>
-      <li><a href="{{ url_for('relatorios.exibir') }}">Relatórios</a></li>
-      <li><a href="{{ url_for('investimentos.listar') }}" class="ativo">Investimentos</a></li>
-    </ul>
-  </nav>
+  {% include "navbar.html" %}
 
   <!-- ===== CONTEÚDO PRINCIPAL ===== -->
   <main class="main">
@@ -162,6 +150,11 @@
 
                         Editar
 
+                      </a>
+
+                      <a href="{{ url_for('investimentos.adicionar_aporte', id=investimento.id) }}"
+                        class="botao botao-editar">
+                        Aporte
                       </a>
 
                       <a href="{{ url_for('investimentos.excluir', id=investimento.id) }}" class="botao botao-excluir"

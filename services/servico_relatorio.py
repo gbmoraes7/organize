@@ -24,12 +24,12 @@ class RelatorioFinanceiro:
 
 
 class ServicoRelatorio:
-    def gerar(self, lancamentos, investimentos):
+    def gerar(self, lancamentos, investimentos, *, total_investido=None):
         
         lancamentos = list(lancamentos)
-        investimentos = list(investimentos)
 
-        total_investido = sum(i.valor_investido for i in investimentos)
+        if total_investido is None:
+            total_investido = sum(i.valor_investido for i in investimentos)
 
         total_receitas = sum(
             l.valor for l in lancamentos if l.tipo == TIPO_RECEITA

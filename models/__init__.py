@@ -8,7 +8,9 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-from models.lancamento import Lancamento  # noqa: E402
-from models.investimento import Investimento  # noqa: E402
+from models.lancamento import Lancamento  
+from models.investimento import Investimento 
+from models.aporte import Aporte 
 
-__all__ = ["db", "Lancamento", "Investimento"]
+__all__ = ["db", "Lancamento", "Investimento", "Aporte"]
+
