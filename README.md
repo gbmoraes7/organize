@@ -85,3 +85,4 @@ python app.py
 Abra [http://127.0.0.1:5000](http://127.0.0.1:5000). O Flask cria as tabelas na primeira execução. Para conferir se está funcionando, cadastre um lançamento de teste e veja se aparece na lista. Para parar o Flask, pressione `Ctrl+C`.
 
 Nas próximas vezes, basta verificar se o PostgreSQL está rodando e repetir esta etapa. Não precisa recriar o banco nem o `venv`. Não envie o `.env` nem a pasta `venv` ao GitHub.
+
