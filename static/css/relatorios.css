@@ -1,0 +1,318 @@
+
+/* ============================================================
+   CARD DE FILTROS (topo da página)
+   ============================================================ */
+.card-filtros-relatorio {
+  background: var(--branco);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+}
+
+.card-filtros-relatorio h2 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: var(--texto-escuro);
+}
+
+/* Linha de campos de filtro em flex */
+.filtros-linha {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.filtro-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filtro-campo label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--texto-claro);
+}
+
+/* Campos de data e select do filtro */
+.filtro-campo input,
+.filtro-campo select {
+  padding: 9px 14px;
+  border: 1.5px solid var(--borda-campo);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--texto-escuro);
+  background: var(--branco);
+  min-width: 140px;
+  appearance: none;
+}
+
+.filtro-campo input:focus,
+.filtro-campo select:focus {
+  outline: none;
+  border-color: var(--foco-claro);
+  box-shadow: 0 0 0 3px var(--foco-anel);
+}
+
+/* Botão alinhado à base da linha */
+.filtro-campo-botao {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.filtro-campo-botao .botao-gerar {
+  background: var(--cor-base);
+  color: var(--branco);
+  border: none;
+  border-radius: 8px;
+  padding: 9px 20px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.filtro-campo-botao .botao-gerar:hover {
+  background: var(--marinho-hover);
+}
+
+
+/* ============================================================
+   SEÇÃO: RESUMO FINANCEIRO
+   ============================================================ */
+.secao-resumo {
+  margin-bottom: 24px;
+}
+
+.secao-resumo h2 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--texto-escuro);
+}
+
+/* Grade dos 3 cards de resumo */
+.resumo-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Card individual de resumo */
+.resumo-card {
+  background: var(--branco);
+  border-radius: 12px;
+  padding: 22px 24px;
+  border-left: 4px solid transparent;
+}
+
+.resumo-card.receita { border-left-color: var(--cor-receita); }
+.resumo-card.despesa { border-left-color: var(--cor-despesa); }
+.resumo-card.saldo   { border-left-color: var(--cor-base); }
+.resumo-card.investimento { border-left-color: var(--cor-investimento); }
+
+/* Rótulo do resumo-card */
+.resumo-card .resumo-label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.resumo-card.receita .resumo-label { color: var(--cor-receita); }
+.resumo-card.despesa .resumo-label { color: var(--cor-despesa); }
+.resumo-card.saldo   .resumo-label { color: var(--cor-base); }
+.resumo-card.investimento .resumo-label { color: var(--cor-investimento); }
+
+/* Valor grande do resumo-card */
+.resumo-card .resumo-valor {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.resumo-card.receita .resumo-valor { color: var(--cor-receita); }
+.resumo-card.despesa .resumo-valor { color: var(--cor-despesa); }
+.resumo-card.saldo   .resumo-valor { color: var(--cor-base); }
+.resumo-card.investimento .resumo-valor { color: var(--cor-investimento); }
+
+
+/* ============================================================
+   LINHA DE GRÁFICOS (Donut + Emergencial)
+   ============================================================ */
+.graficos-linha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+/* Card claro com gráfico de pizza */
+.card-grafico-gastos {
+  background: var(--branco);
+  border-top: 4px solid var(--cor-base);
+  border-radius: 14px;
+  padding: 28px 32px;
+  color: var(--texto-escuro);
+}
+
+.card-grafico-gastos h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.grafico-centro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Donut SVG — mesmo padrão do index */
+.donut-container {
+  position: relative;
+  display: inline-block;
+  width: 180px;
+  height: 180px;
+}
+
+.donut-container svg {
+  transform: rotate(-90deg);
+}
+
+/* Card de gastos emergenciais: marinho com detalhes dourados (7,6:1) */
+.card-emergencial {
+  background: var(--cor-base);
+  border-top: 4px solid var(--cor-destaque);
+  border-radius: 14px;
+  padding: 28px 32px;
+  color: var(--branco);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.emergencial-icone {
+  color: var(--cor-destaque);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2.5px solid var(--cor-destaque);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.card-emergencial h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.emergencial-descricao {
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.emergencial-valor {
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.emergencial-badge {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 6px 18px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+
+/* ============================================================
+   SEÇÃO: ANÁLISE DE GASTOS POR CATEGORIA
+   ============================================================ */
+.secao-analise h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: var(--texto-escuro);
+}
+
+/* Linha de cada categoria */
+.analise-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.analise-label {
+  min-width: 100px;
+  font-size: 13px;
+  color: var(--texto-medio);
+}
+
+/* Trilha de progresso de análise */
+.analise-trilha {
+  flex: 1;
+  height: 10px;
+  background: var(--borda-suave);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.analise-preenchimento {
+  height: 100%;
+  border-radius: 10px;
+}
+
+.analise-valor {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texto-medio);
+  min-width: 120px;
+  text-align: right;
+}
+
+/* Legenda específica dos relatórios */
+.legenda-relatorio {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.legenda-relatorio .legenda-item {
+  color: var(--texto-medio);
+}
+
+
+/* ============================================================
+   RESPONSIVIDADE DA PÁGINA RELATÓRIOS
+   ============================================================ */
+@media (max-width: 1024px) {
+  .resumo-cards,
+  .graficos-linha {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .filtros-linha {
+    flex-direction: column;
+  }
+
+  .filtro-campo input,
+  .filtro-campo select {
+    min-width: unset;
+    width: 100%;
+  }
+}

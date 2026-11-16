@@ -1,0 +1,570 @@
+
+/* ----- Importação de fontes ----- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+
+:root {
+  /* Paleta */
+  --marinho: #142B45;
+  /* base: navbar, títulos, botão principal */
+  --azul: #2363A2;
+  /* receitas */
+  --violeta: #6943A5;
+  /* investimentos */
+  --terracota: #A33A32;
+  /* despesas */
+  --dourado: #E8B44F;
+  /* destaques */
+
+  /* Papéis na interface (use estes nomes nas regras de componentes) */
+  --cor-base: var(--marinho);
+  --cor-receita: var(--azul);
+  --cor-investimento: var(--violeta);
+  --cor-despesa: var(--terracota);
+  --cor-destaque: var(--dourado);
+
+  /* Variações para hover */
+  --marinho-hover: #1E3F63;
+  --terracota-hover: #842E28;
+
+  /* Fundos suaves + texto escuro correspondente (badges e caixas) */
+  --receita-fundo: #E6EFF8;
+  --receita-texto: #1B4F83;
+  --receita-borda: #B5CDE6;
+  --despesa-fundo: #F8E9E7;
+  --despesa-texto: #842E28;
+  --despesa-borda: #E3B7B2;
+  --investimento-texto: #523588;
+  --destaque-fundo: #FFF6DD;
+  --destaque-texto: #5C4300;
+  --destaque-borda: #F1D48F;
+
+  /* Séries dos gráficos de categorias. A ordem alterna tons escuros e claros
+     (terracota, dourado, azul, terracota claro, violeta, azul claro, marinho)
+     porque terracota, azul e violeta têm luminância parecida e não devem ficar
+     lado a lado. Azul e violeta nunca são vizinhos. */
+  --serie-1: #A33A32;
+  --serie-2: #E8B44F;
+  --serie-3: #2363A2;
+  --serie-4: #C8705F;
+  --serie-5: #6943A5;
+  --serie-6: #5F94CC;
+  --serie-7: #142B45;
+
+  /* Foco de teclado: azul sobre fundo claro, dourado sobre marinho */
+  --foco-claro: #2363A2;
+  --foco-escuro: #E8B44F;
+  --foco-anel: rgba(35, 99, 162, 0.28);
+
+  /* Neutros */
+  --fundo: #F4F7FB;
+  --branco: #ffffff;
+  --texto-escuro: #142B45;
+  --texto-medio: #2B3F55;
+  --texto-claro: #5A6B7F;
+  --borda: #D3DCE8;
+  /* divisórias de cards e tabelas */
+  --borda-campo: #7B8BA0;
+  /* contorno de campos de formulário (3,5:1 sobre branco) */
+  --borda-suave: #E6ECF4;
+}
+
+
+/* ----- Estado de foco (teclado) -----
+   Azul sobre fundo claro; dourado sobre fundo marinho. */
+:focus-visible {
+  outline: 3px solid var(--foco-claro);
+  outline-offset: 2px;
+}
+
+.navbar :focus-visible,
+.card-total-investido :focus-visible {
+  outline-color: var(--foco-escuro);
+}
+
+
+/* ----- Reset básico ----- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* ----- Base do corpo ----- */
+body {
+  font-family: 'Poppins', 'Inter', sans-serif;
+  background: var(--fundo);
+  color: var(--texto-escuro);
+  min-height: 100vh;
+}
+
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.navbar {
+  background: var(--cor-base);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Logo / marca */
+.navbar-marca {
+  border-radius: 6px;
+  padding: 6px 12px;
+  text-decoration: none;
+}
+
+.navbar-logo {
+  display: block;
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.navbar-marca .marca-titulo {
+  display: block;
+  color: var(--branco);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+
+.navbar-marca .marca-subtitulo {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Links de navegação */
+.navbar-nav {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.navbar-nav a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding-bottom: 4px;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.navbar-nav a:hover {
+  color: var(--branco);
+}
+
+/* Link ativo: texto branco + sublinhado */
+.navbar-nav a.ativo {
+  color: var(--branco);
+  font-weight: 600;
+}
+
+.navbar-nav a.ativo::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--cor-destaque);
+  border-radius: 2px;
+}
+
+
+/* ============================================================
+   CONTAINER PRINCIPAL
+   ============================================================ */
+.main {
+  padding: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+
+/* ============================================================
+   CARD GENÉRICO
+   ============================================================ */
+.card {
+  background: var(--branco);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+/* Título interno de card */
+.card-titulo {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--texto-escuro);
+  margin-bottom: 18px;
+}
+
+
+/* ============================================================
+   BOTÕES
+   ============================================================ */
+.botao {
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+/* Botão principal (marinho) */
+.botao-principal {
+  background: var(--cor-base);
+  color: var(--branco);
+  width: 100%;
+  margin-top: 4px;
+}
+
+.botao-principal:hover {
+  background: var(--marinho-hover);
+}
+
+/* Botão de editar (secundário: contorno marinho) */
+.botao-editar {
+  background: var(--branco);
+  color: var(--cor-base);
+  box-shadow: inset 0 0 0 1.5px var(--cor-base);
+  padding: 6px 14px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+
+.botao-editar:hover {
+  background: var(--cor-base);
+  color: var(--branco);
+}
+
+/* Botão de excluir (terracota) */
+.botao-excluir {
+  background: var(--cor-despesa);
+  color: var(--branco);
+  padding: 6px 14px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+
+.botao-excluir:hover {
+  background: var(--terracota-hover);
+}
+
+
+/* ============================================================
+   FORMULÁRIOS
+   ============================================================ */
+.form-grupo {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--texto-medio);
+  margin-bottom: 6px;
+}
+
+.form-campo {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--borda-campo);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--texto-escuro);
+  background: var(--branco);
+  transition: border-color 0.2s;
+  appearance: none;
+}
+
+.form-campo:focus {
+  outline: none;
+  border-color: var(--foco-claro);
+  box-shadow: 0 0 0 3px var(--foco-anel);
+}
+
+.form-campo::placeholder {
+  color: var(--texto-claro);
+}
+
+/* Seta personalizada para <select> */
+select.form-campo {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+
+/* ============================================================
+   TABELAS
+   ============================================================ */
+.tabela-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texto-medio);
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1.5px solid var(--borda);
+}
+
+tbody td {
+  padding: 14px 16px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--borda-suave);
+  vertical-align: middle;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Célula de ações (Editar / Excluir) */
+.celula-acoes {
+  display: flex;
+  gap: 8px;
+}
+
+
+/* ============================================================
+   BADGES DE TIPO
+   ============================================================ */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-receita {
+  background: var(--receita-fundo);
+  color: var(--receita-texto);
+  border: 1px solid var(--receita-borda);
+}
+
+.badge-despesa {
+  background: var(--despesa-fundo);
+  color: var(--despesa-texto);
+  border: 1px solid var(--despesa-borda);
+}
+
+/* Despesa emergencial: destaque dourado (texto escuro sobre fundo claro) */
+.badge-emergencial {
+  background: var(--destaque-fundo);
+  color: var(--destaque-texto);
+  border: 1px solid var(--destaque-borda);
+}
+
+
+/* ============================================================
+   CORES DE VALORES
+   ============================================================ */
+.valor-receita {
+  color: var(--cor-receita);
+  font-weight: 600;
+}
+
+.valor-despesa {
+  color: var(--cor-despesa);
+  font-weight: 600;
+}
+
+.valor-investimento {
+  color: var(--cor-investimento);
+  font-weight: 600;
+}
+
+.valor-restante {
+  color: var(--cor-base);
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   BARRA DE PROGRESSO
+   ============================================================ */
+.progresso-trilha {
+  background: var(--borda);
+  border-radius: 10px;
+  height: 8px;
+  width: 80px;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.progresso-preenchimento {
+  height: 100%;
+  border-radius: 10px;
+  background: var(--cor-investimento);
+}
+
+/* Célula de progresso (barra + percentual) */
+.progresso-celula {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progresso-celula span {
+  font-size: 12px;
+  color: var(--texto-medio);
+}
+
+
+/* ============================================================
+   LEGENDA DE GRÁFICOS
+   Cada série define --cor-serie; o traço do donut e o ponto da
+   legenda leem a mesma variável.
+   ============================================================ */
+.serie-1 {
+  --cor-serie: var(--serie-1);
+}
+
+.serie-2 {
+  --cor-serie: var(--serie-2);
+}
+
+.serie-3 {
+  --cor-serie: var(--serie-3);
+}
+
+.serie-4 {
+  --cor-serie: var(--serie-4);
+}
+
+.serie-5 {
+  --cor-serie: var(--serie-5);
+}
+
+.serie-6 {
+  --cor-serie: var(--serie-6);
+}
+
+.serie-7 {
+  --cor-serie: var(--serie-7);
+}
+
+/* Séries com significado fixo no menu principal */
+.serie-gasto {
+  --cor-serie: var(--cor-despesa);
+}
+
+.serie-nao-gasto {
+  --cor-serie: var(--cor-base);
+}
+
+.serie-emergencial {
+  --cor-serie: var(--cor-destaque);
+}
+
+.serie-nao-emergencial {
+  --cor-serie: var(--cor-base);
+}
+
+.donut-segmento {
+  fill: none;
+  stroke: var(--cor-serie);
+}
+
+/* Traço fino entre segmentos: separa cores vizinhas sem depender só do matiz */
+.donut-separador {
+  fill: none;
+  stroke: var(--branco);
+}
+
+.legenda {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+.legenda-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--texto-medio);
+}
+
+.legenda-ponto {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--cor-serie);
+  box-shadow: 0 0 0 1px var(--borda);
+}
+
+
+/* ============================================================
+   RESPONSIVIDADE GLOBAL
+   ============================================================ */
+@media (max-width: 900px) {
+  .main {
+    padding: 16px;
+  }
+
+  .navbar {
+    padding: 0 16px;
+  }
+
+  .navbar-nav {
+    gap: 16px;
+  }
+
+  .navbar-nav a {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar-nav {
+    gap: 10px;
+  }
+
+  .navbar-nav a {
+    font-size: 11px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  thead th,
+  tbody td {
+    padding: 10px 8px;
+  }
+}
