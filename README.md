@@ -1,4 +1,4 @@
-# Gabriel, Matheus, Thais e Vicente 
+
 # Controle Financeiro
 
 
