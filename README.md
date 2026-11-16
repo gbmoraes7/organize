@@ -4,6 +4,7 @@
 
 Aplicação web para registrar receitas e despesas, acompanhar investimentos e consultar relatórios. O projeto usa Flask e PostgreSQL e segue a arquitetura MVC: `models/` (dados), `views/` (páginas Jinja), `controllers/` (rotas por funcionalidade) e `services/` (regras do relatório). O fluxo completo e a paleta de cores estão em [`docs/arquitetura.md`](docs/arquitetura.md).
 
+
 ## 1. Antes de começar
 
 
