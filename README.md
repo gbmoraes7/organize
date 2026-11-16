@@ -28,6 +28,7 @@ source venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
+
 Se `python3 --version` já mostrar a versão 3.12, você pode usar `python3` no lugar de `python3.12`. O primeiro comando cria a pasta `venv` automaticamente. O `requirements.txt` instala Flask e as demais bibliotecas. Não precisa de Node.js ou Live Server.
 
 ## 3. Configure o banco local
