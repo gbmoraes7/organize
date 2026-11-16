@@ -75,7 +75,7 @@ Se seu PostgreSQL usar outra porta, troque `5432` pela porta correta. Se a senha
 ```bash
 source venv/bin/activate
 python app.py
-```
+``` 
 
 Abra [http://127.0.0.1:5000](http://127.0.0.1:5000). O Flask cria as tabelas na primeira execução. Para conferir se está funcionando, cadastre um lançamento de teste e veja se aparece na lista. Para parar o Flask, pressione `Ctrl+C`.
 
