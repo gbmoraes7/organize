@@ -1,8 +1,11 @@
+
 # Controle Financeiro
+
 
 Aplicação web para registrar receitas e despesas, acompanhar investimentos e consultar relatórios. O projeto usa Flask e PostgreSQL e segue a arquitetura MVC: `models/` (dados), `views/` (páginas Jinja), `controllers/` (rotas por funcionalidade) e `services/` (regras do relatório). O fluxo completo e a paleta de cores estão em [`docs/arquitetura.md`](docs/arquitetura.md).
 
 ## 1. Antes de começar
+
 
 Este guia considera que você já tem **Git e VS Code**. Para rodar o sistema completo, tenha **Python 3.12** e **PostgreSQL** instalados. Se faltar algum deles, consulte as instruções de instalação para o seu sistema no [site do Python](https://www.python.org/downloads/) ou no [site do PostgreSQL](https://www.postgresql.org/download/).
 
